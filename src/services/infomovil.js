@@ -31,7 +31,7 @@ export const InfomovilAPI = {
     const payload = {
       correos_usuario: {
         remitente: form.email,
-        asunto: "Contacto desde geosoft.website",
+        asunto: "Contacto desde el sitio de sumaqamañabolivia.org",
         cuerpo: form.mensaje,
         nombre: form.nombre,
         comercio_id: COMERCIO_ID,
