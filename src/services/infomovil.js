@@ -1,14 +1,18 @@
-const BASE = process.env.NEXT_PUBLIC_INFOMOVIL_API_BASE
-const COMERCIO_ID = Number(process.env.NEXT_PUBLIC_GEOSOFT_COMERCIO_ID || 0)
-const RECAPTCHA_TOKEN = process.env.NEXT_PUBLIC_RECAPTCHA_TOKEN || 'test'
+// TODO: Implementar ReCAPTCHA v3 en el formulario de contacto
+const BASE = '/api'
+const COMERCIO_ID = Number(process.env.NEXT_PUBLIC_GEOSOFT_COMERCIO_ID || 322008)
+const APP_TOKEN = process.env.NEXT_PUBLIC_GEOSOFT_TOKEN || ''
 
 async function request(path, payload) {
-  const res = await fetch(`${BASE}${path}`, {
+  const url = `${BASE}${path}`
+  const headers = { 'Content-Type': 'application/json' }
+  if (APP_TOKEN) headers['X-APP-TOKEN'] = APP_TOKEN
+
+  console.log('POST:', url)
+
+  const res = await fetch(url, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-APP-TOKEN': process.env.NEXT_PUBLIC_GEOSOFT_TOKEN
-    },
+    headers,
     body: JSON.stringify(payload)
   })
 
@@ -30,8 +34,7 @@ export const InfomovilAPI = {
         nombre: form.nombre,
         comercio_id: COMERCIO_ID,
         numero_celular: form.celular || null
-      },
-      recaptcha_token: RECAPTCHA_TOKEN
+      }
     }
 
     console.log('Enviando a Infomóvil:', payload)
