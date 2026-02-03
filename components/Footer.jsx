@@ -4,16 +4,15 @@ export default function Footer() {
   return (
     <footer className="bg-emerald-700 text-white">
       <div className="mx-auto max-w-6xl px-4 py-10 grid gap-8 md:grid-cols-2">
-        
         {/* Contacto Bolivia */}
         <div className="text-sm leading-relaxed">
-          <h3 className="mb-3 text-base font-semibold">
-            Contacto Bolivia
-          </h3>
+          <h3 className="mb-3 text-base font-semibold">Contacto Bolivia</h3>
 
           <p className="mb-2">
-            <span className="font-semibold">Dirección:</span><br />
-            Avenida Mecapaca #6734 calle 20<br />
+            <span className="font-semibold">Dirección:</span>
+            <br />
+            Avenida Mecapaca #6734 calle 20
+            <br />
             (Zona Obrajes) La Paz
           </p>
 
@@ -22,18 +21,20 @@ export default function Footer() {
           </p>
 
           <p className="mb-2">
-            <span className="font-semibold">Email:</span><br />
+            <span className="font-semibold">Email:</span>
+            <br />
             <a
-              href="mailto:fundacion.suma.qamana.bolivia@gmail.com"
+              href="mailto:glaparedesoblitas@sumacamañabolivia.org"
               className="underline hover:text-emerald-200"
             >
-              fundacion.suma.qamana.bolivia@gmail.com
+              glaparedesoblitas@sumacamañabolivia.org
             </a>
           </p>
 
           <p>
-            <span className="font-semibold">Teléfonos:</span><br />
-            +591 62463715 &nbsp; +591 2824457
+            <span className="font-semibold">Teléfonos:</span>
+            <br />
+            +591 62463715 &nbsp; +591 22824457
           </p>
         </div>
 

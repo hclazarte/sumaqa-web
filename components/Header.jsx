@@ -14,15 +14,12 @@ export default function Header() {
       <div className="border-b border-gray-200 bg-white">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4">
           <div className="flex items-center gap-3">
-
-
             <Link
               href="/"
               className="text-sm font-semibold tracking-tight text-emerald-700"
             >
               Fundación Suma Qamaña Bolivia
             </Link>
-
 
             {/* El "verdecito" se queda aquí arriba */}
             <span className="hidden sm:inline-flex items-center rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-900">

@@ -99,10 +99,11 @@ export default function ProyectosPage() {
             </TextoJustificado>
 
             <TextoJustificado>
-              En cada proyecto, buscamos <strong>generar un impacto positivo</strong>,
-              fomentando la colaboración y el sentido de pertenencia, convencidos
-              de que el trabajo conjunto entre profesionales y comunidad es la
-              base para alcanzar una sociedad más justa, equitativa y solidaria.
+              En cada proyecto, buscamos{" "}
+              <strong>generar un impacto positivo</strong>, fomentando la
+              colaboración y el sentido de pertenencia, convencidos de que el
+              trabajo conjunto entre profesionales y comunidad es la base para
+              alcanzar una sociedad más justa, equitativa y solidaria.
             </TextoJustificado>
 
             <TextoJustificado>
@@ -113,8 +114,8 @@ export default function ProyectosPage() {
               atención de casos derivados por los Juzgados de Niñez y
               Adolescencia, Juzgados de Familia y la Fiscalía, garantizando{" "}
               <strong>
-                un servicio responsable y comprometido con los derechos de niñas,
-                niños, adolescentes y sus familias.
+                un servicio responsable y comprometido con los derechos de
+                niñas, niños, adolescentes y sus familias.
               </strong>
             </TextoJustificado>
           </div>
