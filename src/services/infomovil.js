@@ -12,15 +12,51 @@ async function request(path, payload) {
 
   console.log('POST:', url)
 
-  const res = await fetch(url, {
-    method: 'POST',
-    headers,
-    body: JSON.stringify(payload)
-  })
+  let res
+  try {
+    res = await fetch(url, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(payload)
+    })
+  } catch (e) {
+    // Error de red / conexión
+    throw new Error(
+      'No se pudo conectar con el servicio. Intente nuevamente en unos minutos.'
+    )
+  }
+
+  const contentType = (res.headers.get('content-type') || '').toLowerCase()
+
+  // Si el proxy no existe, normalmente Next responde HTML (doctype)
+  const isHtml = contentType.includes('text/html')
 
   if (!res.ok) {
-    const text = await res.text()
+    const text = await res.text().catch(() => '')
+
+    const looksLikeHtml = isHtml || /^\s*<!doctype html/i.test(text)
+
+    if (looksLikeHtml || res.status === 404) {
+      throw new Error(
+        'En este momento el formulario no puede enviar el mensaje (servicio no disponible). Por favor, intente más tarde.'
+      )
+    }
+
     throw new Error(text || `Error ${res.status}`)
+  }
+
+  // OK pero respuesta inesperada (no JSON)
+  if (!contentType.includes('application/json')) {
+    const text = await res.text().catch(() => '')
+    const looksLikeHtml = isHtml || /^\s*<!doctype html/i.test(text)
+
+    if (looksLikeHtml) {
+      throw new Error(
+        'En este momento el formulario no puede enviar el mensaje (servicio no disponible). Por favor, intente más tarde.'
+      )
+    }
+
+    throw new Error('Respuesta inesperada del servidor. Intente más tarde.')
   }
 
   return res.json().catch(() => ({}))
