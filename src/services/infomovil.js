@@ -1,16 +1,10 @@
-// TODO: Implementar ReCAPTCHA v3 en el formulario de contacto
 const BASE = '/api'
-const COMERCIO_ID = Number(
-  process.env.NEXT_PUBLIC_GEOSOFT_COMERCIO_ID || 322008
-)
-const APP_TOKEN = process.env.NEXT_PUBLIC_GEOSOFT_TOKEN || ''
-
+const COMERCIO_ID = Number(process.env.NEXT_PUBLIC_GEOSOFT_COMERCIO_ID || 53257)
+const SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''
+                             
 async function request(path, payload) {
   const url = `${BASE}${path}`
   const headers = { 'Content-Type': 'application/json' }
-  if (APP_TOKEN) headers['X-APP-TOKEN'] = APP_TOKEN
-
-  console.log('POST:', url)
 
   let res
   try {
@@ -62,17 +56,23 @@ async function request(path, payload) {
   return res.json().catch(() => ({}))
 }
 
-export const InfomovilAPI = {
-  enviarContacto(form) {
+export const  InfomovilAPI = {
+
+  async enviarContacto(form) {
+    const token = await grecaptcha.enterprise.execute(
+      SITE_KEY,
+      { action: 'contact_form' }
+    )
     const payload = {
       correos_usuario: {
         remitente: form.email,
-        asunto: 'Contacto desde el sitio de sumaqamañabolivia.org',
+        asunto: 'Contacto desde geosoft.website',
         cuerpo: form.mensaje,
         nombre: form.nombre,
         comercio_id: COMERCIO_ID,
         numero_celular: form.celular || null
-      }
+      },
+      recaptcha_token: token
     }
 
     console.log('Enviando a Infomóvil:', payload)
