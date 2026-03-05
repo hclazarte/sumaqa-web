@@ -1,6 +1,7 @@
 const BASE = '/api'
 const COMERCIO_ID = Number(process.env.NEXT_PUBLIC_GEOSOFT_COMERCIO_ID || 53257)
 const SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''
+const SITE_DESCRIPTION = process.env.NEXT_PUBLIC_DESCRIPTION || 'Contacto desde su sitio web'
                              
 async function request(path, payload) {
   const url = `${BASE}${path}`
@@ -66,7 +67,7 @@ export const  InfomovilAPI = {
     const payload = {
       correos_usuario: {
         remitente: form.email,
-        asunto: 'Contacto desde geosoft.website',
+        asunto: SITE_DESCRIPTION,
         cuerpo: form.mensaje,
         nombre: form.nombre,
         comercio_id: COMERCIO_ID,
